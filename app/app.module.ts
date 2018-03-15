@@ -39,7 +39,9 @@ export class AppModule {
 
 }
 
-function checkDirtyState() {
+function checkDirtyState(comp: CreateEventComponent) {
     console.log('Please don\'t go');
-    return false;
+    if(comp.isDirty)
+        return window.confirm('You have not saved this event, do you really want to cancel?');
+    return true;
 }
