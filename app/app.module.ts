@@ -10,6 +10,8 @@ import { EventDetailsComponent } from './events/event-details/event-details.comp
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { CreateEventComponent } from './events/create-event/create-event.component';
+import { Error404Component } from './errors/404.component';
+import { EventRouteActivator } from './events/event-details/event-route-activator.service';
 
 @NgModule({
     imports: [
@@ -22,14 +24,22 @@ import { CreateEventComponent } from './events/create-event/create-event.compone
         EventThumbnailComponent,
         EventDetailsComponent,
         CreateEventComponent,
-        NavBarComponent
+        NavBarComponent,
+        Error404Component
     ],
     providers: [
         EventService,
-        ToastrService
+        ToastrService,
+        EventRouteActivator,
+        {provide: 'canDeactivateCreateEvent', useValue: checkDirtyState}
     ],
     bootstrap: [EventsAppComponent]
 })
 export class AppModule {
 
+}
+
+function checkDirtyState() {
+    console.log('Please don\'t go');
+    return false;
 }

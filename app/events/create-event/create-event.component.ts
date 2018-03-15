@@ -20,6 +20,6 @@ export class CreateEventComponent {
     constructor(private router: Router) {}
     
     cancel() {
-        this.router.navigate(['/event']);
+        this.router.navigate(['/events']);
     }
 }
